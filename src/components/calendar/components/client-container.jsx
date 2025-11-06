@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import {
   format,
@@ -9,17 +7,18 @@ import {
   isToday,
 } from "date-fns";
 import { useCalendar } from "../contexts/calendar-context";
-import { CalendarView } from "../interfaces/calendar";
 import { cn } from "@/lib/utils";
 import { getEventColorClass } from "../helpers/calendar-helpers";
 
-interface ClientContainerProps {
-  view: CalendarView;
-}
-
-export function ClientContainer({ view = "month" }: ClientContainerProps) {
+/**
+ * ClientContainer component that renders the calendar view
+ * @param {Object} props - Component props
+ * @param {string} [props.view='month'] - Calendar view type (month, week, day, etc.)
+ * @returns {JSX.Element} ClientContainer component
+ */
+export function ClientContainer({ view = "month" }) {
   const { selectedDate, events, selectedUserId, badgeVariant } = useCalendar();
-  const [calendarDays, setCalendarDays] = useState<Date[]>([]);
+  const [calendarDays, setCalendarDays] = useState([]);
 
   useEffect(() => {
     if (view === "month") {
@@ -53,7 +52,7 @@ export function ClientContainer({ view = "month" }: ClientContainerProps) {
     return true;
   });
 
-  const getEventsForDay = (day: Date) => {
+  const getEventsForDay = (day) => {
     return filteredEvents.filter((event) => {
       const eventStart = new Date(event.startDate);
       const eventEnd = new Date(event.endDate);
@@ -65,9 +64,9 @@ export function ClientContainer({ view = "month" }: ClientContainerProps) {
   };
 
   // Helper function to map event color to status type
-  const mapColorToStatusType = (color: string): string => {
+  const mapColorToStatusType = (color) => {
     // Map color names to status types
-    const colorToStatusMap: Record<string, string> = {
+    const colorToStatusMap = {
       red: "rejected",
       yellow: "pending",
       purple: "sick",

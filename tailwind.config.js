@@ -1,9 +1,7 @@
 import animatePlugin from "tailwindcss-animate";
 
-import type { Config } from "tailwindcss";
-
-const config: Config = {
-  content: ["./src/**/*.tsx"],
+const config = {
+  content: ["./src/**/*.jsx", "./src/**/*.js", "./index.html"],
   darkMode: "class",
   theme: {
     extend: {
@@ -28,16 +26,6 @@ const config: Config = {
         "18": "4.5rem",
         "4.5": "1.125rem",
         "5.5": "1.375rem",
-        "6.5": "1.625rem",
-        "8.5": "2.125rem",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      backgroundImage: {
-        "calendar-disabled-hour": "repeating-linear-gradient(-60deg, hsl(var(--border)) 0 0.5px, transparent 0.5px 8px)",
       },
       colors: {
         background: "hsl(var(--background))",
@@ -106,6 +94,6 @@ const config: Config = {
     },
   },
   plugins: [animatePlugin],
-} as const;
+};
 
 export default config;

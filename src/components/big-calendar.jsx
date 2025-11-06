@@ -2,21 +2,23 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CalendarProvider } from "@/components/calendar/contexts/calendar-context";
 import { ClientContainer } from "@/components/calendar/components/client-container";
-import { IEvent, IUser } from "@/components/calendar/interfaces/calendar";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-interface BigCalendarProps {
-  events: IEvent[];
-  users: IUser[];
-  initialDate?: Date;
-}
-
+/**
+ * BigCalendar component for displaying events and users in a calendar view
+ * 
+ * @param {Object} props - Component props
+ * @param {Array} props.events - Array of event objects (see IEvent in calendar.js)
+ * @param {Array} props.users - Array of user objects (see IUser in calendar.js) 
+ * @param {Date} [props.initialDate] - Initial date for the calendar (defaults to current date)
+ * @returns {JSX.Element} The BigCalendar component
+ */
 export function BigCalendar({
   events,
   users,
   initialDate = new Date(),
-}: BigCalendarProps) {
+}) {
   const [baseDate, setBaseDate] = useState(initialDate);
 
   // Navigation functions

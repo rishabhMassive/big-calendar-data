@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -36,16 +35,23 @@ const buttonVariants = cva(
   }
 );
 
+/**
+ * Button component with multiple variants and sizes
+ * @param {Object} props - Component props
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.variant] - Button variant (default, destructive, outline, secondary, ghost, link, custom)
+ * @param {string} [props.size] - Button size (default, sm, lg, icon)
+ * @param {boolean} [props.asChild=false] - Render as Slot component for composition
+ * @param {...Object} props - Additional button props
+ * @returns {JSX.Element} Button component
+ */
 function Button({
   className,
   variant,
   size,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
+}) {
   const Comp = asChild ? Slot : "button";
 
   return (

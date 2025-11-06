@@ -6,12 +6,13 @@ import {
   eachDayOfInterval,
   format,
 } from "date-fns";
-import { IEvent } from "../interfaces/calendar";
 
 /**
  * Gets all days in a month including days from adjacent months to fill calendar grid
+ * @param {Date} date - The date to get calendar days for
+ * @returns {Date[]} Array of dates for the calendar grid
  */
-export function getCalendarMonthDays(date: Date): Date[] {
+export function getCalendarMonthDays(date) {
   const monthStart = startOfMonth(date);
   const monthEnd = endOfMonth(date);
   const calendarStart = startOfWeek(monthStart);
@@ -22,8 +23,10 @@ export function getCalendarMonthDays(date: Date): Date[] {
 
 /**
  * Formats an event's time for display
+ * @param {Object} event - Event object with startDate and endDate
+ * @returns {string} Formatted time range string
  */
-export function formatEventTime(event: IEvent): string {
+export function formatEventTime(event) {
   const startDate = new Date(event.startDate);
   const endDate = new Date(event.endDate);
 
@@ -32,8 +35,10 @@ export function formatEventTime(event: IEvent): string {
 
 /**
  * Checks if an event spans multiple days
+ * @param {Object} event - Event object with startDate and endDate
+ * @returns {boolean} True if event spans multiple days
  */
-export function isMultiDayEvent(event: IEvent): boolean {
+export function isMultiDayEvent(event) {
   const startDate = new Date(event.startDate);
   const endDate = new Date(event.endDate);
 
@@ -42,13 +47,16 @@ export function isMultiDayEvent(event: IEvent): boolean {
 
 /**
  * Returns CSS styles based on event type
+ * @param {string} eventType - Type of event (rejected, pending, etc.)
+ * @param {'bg'|'text'|'border'} [variant='bg'] - CSS variant to apply
+ * @returns {string} CSS class name
  */
 export function getEventColorClass(
-  eventType: string,
-  variant: "bg" | "text" | "border" = "bg"
-): string {
+  eventType,
+  variant = "bg"
+) {
   // Map event types to CSS variable names
-  const colorMap: Record<string, string> = {
+  const colorMap = {
     rejected: "status-rejected",
     pending: "status-pending",
     sick: "status-sick",

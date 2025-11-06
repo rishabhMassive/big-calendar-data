@@ -1,11 +1,11 @@
 import BigCalendar from "@/components/big-calendar";
-import { IEvent, IUser } from "../components/calendar/interfaces/calendar";
 import { leaveData } from "@/data/leave-data";
-export default function Home() {
+
+function App() {
   // Transform leave data to event format for the calendar
-  const leaveEvents: IEvent[] = leaveData.data.output.map((leave) => {
+  const leaveEvents = leaveData.data.output.map((leave) => {
     // Function to get color based on leave status
-    const getLeaveColor = (status: string, leaveType: string) => {
+    const getLeaveColor = (status, leaveType) => {
       if (status === "Rejected") return "red";
       if (status === "Pending") return "yellow";
 
@@ -29,7 +29,7 @@ export default function Home() {
     };
 
     // Convert YYYY-MM-DD to ISO string with time
-    const toISOWithTime = (dateStr: string, isEnd: boolean = false) => {
+    const toISOWithTime = (dateStr, isEnd = false) => {
       const date = new Date(dateStr);
       if (isEnd) {
         // End of day for end date
@@ -56,7 +56,7 @@ export default function Home() {
   });
 
   // Extract unique users from leave data
-  const leaveUsers: IUser[] = Array.from(
+  const leaveUsers = Array.from(
     new Map(
       leaveData.data.output.map((leave) => [
         leave.employee_id,
@@ -69,9 +69,12 @@ export default function Home() {
       ])
     ).values()
   );
+
   return (
     <main>
       <BigCalendar events={leaveEvents} users={leaveUsers} />
     </main>
   );
 }
+
+export default App;
