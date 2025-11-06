@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -26,7 +26,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3",
     "lucide-react": "^0.488.0",
-    "next": "^14.2.3",
+
     "react": "18.2.0",
     "react-aria-components": "^1.6.0",
     "react-day-picker": "8.10.1",
@@ -46,7 +46,8 @@
     "@typescript-eslint/parser": "^8.15.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.48.0",
-    "eslint-config-next": "^15.0.3",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.8",
     "eslint-plugin-tailwindcss": "^3.17.5",
     "postcss": "^8.4.49",
     "prettier": "^3.3.3",
